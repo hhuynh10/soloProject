@@ -12,6 +12,31 @@
   text-decoration: none
 }
 
+.edit:hover{
+  color: white
+}
+
+.register {
+  text-align: left;
+  margin-left: 255px
+}
+
+.formRegister, .formLogin {
+  margin-left: 125px;
+  /* background-color: antiquewhite; */
+}
+
+.login{
+  text-align: left;
+  margin-left: 275px;
+  margin-top: 100px
+}
+
+.viewTable {
+  background-color: antiquewhite;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -38,7 +38,8 @@ const EditPokemon = () => {
             generation,
             description,
             image
-        }, {withCredentials:true}).then((res)=> {
+        }, {withCredentials:true})
+        .then((res)=> {
             console.log(res)
             navigate('/home')
         }).catch((err)=> {
@@ -46,14 +47,29 @@ const EditPokemon = () => {
             setErrors(err.response.data.errors)
         })
     }
+
+    const logout = (e)=>{
+        axios.get('http://localhost:8000/api/logout',{withCredentials:true})
+        .then((res)=> {
+            console.log('logged out')
+            navigate('/')
+        }).catch((err)=> {
+            console.log(err)
+        })
+    }
     return (
-        <div>
-            <div>
-                <Link to="/home" className="text-success fs-5">Home</Link>
+        <div style={{backgroundImage:`url(https://i.imgur.com/JDhvEpO.png)`,
+        backgroundSize: 'cover'}}>
+            <div className="col-12 no-gutter fluid pt-1 pb-1 bg-dark d-flex justify-content-between">
+                <h1 className="text-light ms-5">Welcome!</h1>
+                <div className='me-5 mt-2'>
+                    <Link to="/home" className="text-success fs-5 me-5 edit">Back to Home </Link>
+                    <Link to="/" className="text-success edit fs-5" onClick={logout}>Logout</Link>
+                </div>
             </div>
-            <div>
-                <h5 className="text-dark mt-2">Add your Pokemon here:</h5>
-                <form onSubmit={submitHandler} className="col-6 mx-auto">
+            <div style={{height:'700px'}}>
+                <h3 className="text-dark mt-2">Please edit your Pokemon!</h3>
+                <form onSubmit={submitHandler} className="col-6 mx-auto fs-5">
                     <label className="form-label">Name:</label>
                     <input type="text" className="form-control bg-light" value={name} onChange={(e)=>setName(e.target.value)} />
                     {errors.name ? <span className='text-danger'>{errors.name.message}</span> : null }<br></br>
@@ -79,7 +95,7 @@ const EditPokemon = () => {
                     <label className="form-label">Image:</label>
                     <input type="text" className="form-control bg-light" value={image} onChange={(e)=>setImage(e.target.value)} />
                     {errors.image ? <span className='text-danger'>{errors.image.message}</span> : null }<br></br>
-                    <button type="submit" className="btn btn-info mt-3">Submit</button>
+                    <button type="submit" className="btn btn-success mt-3">Submit</button>
                 </form>
             </div>
         </div>

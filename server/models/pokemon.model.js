@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator')
 
 const PokemonSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Name is required"],
-        minLength: [3, "Name must be at least 3 character long"]
+        minLength: [3, "Name must be at least 3 character long"],
+        unique: true
     },
     type: {
         type: String,
@@ -31,5 +33,7 @@ const PokemonSchema = new mongoose.Schema({
 }, {timestamps:true});
 
 const Pokemon = mongoose.model('Pokemon', PokemonSchema);
+
+PokemonSchema.plugin(uniqueValidator)
 
 module.exports = Pokemon;

@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
 
     const [pokemon, setPokemon] = useState([])
 
+    const navigate = useNavigate()
+
     useEffect(()=>{
-        axios.get('http://localhost:8000/api/allPokemons')
+        axios.get('http://localhost:8000/api/allPokemons', {withCredentials:true})
         .then((res)=> {
             console.log(res)
             setPokemon(res.data)
@@ -18,7 +20,7 @@ const Home = () => {
     }, [])
 
     const deleteHandler = (id) =>{
-        axios.delete(`http://localhost:8000/api/delete/${id}`)
+        axios.delete(`http://localhost:8000/api/delete/${id}`, {withCredentials:true})
         .then((res)=> {
             console.log(res)
             const filterPokemon = pokemon.filter((pokemon)=>(pokemon._id !== id))
@@ -28,16 +30,31 @@ const Home = () => {
         })
     }
 
+    const logout = (e)=>{
+        axios.get('http://localhost:8000/api/logout',{withCredentials:true})
+        .then((res)=> {
+            console.log('logged out')
+            navigate('/')
+        }).catch((err)=> {
+            console.log(err)
+        })
+    }
+
     return (
-        <div>
+        <div style={{backgroundImage:`url(https://i.imgur.com/JNbrYMq.jpeg)`,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'repeat'}} >
             <div className="col-12 no-gutter fluid pt-1 pb-1 bg-dark d-flex justify-content-between">
                 <h1 className="text-light ms-5">Welcome!</h1>
-                <Link to="/addPokemon" className="me-5 mt-3 text-info fs-6">Add your Pokemon here! </Link>
+                <div className='me-5 mt-2'>
+                    <Link to="/addPokemon" className="text-success fs-5 me-5 edit">Add your Pokemon here! </Link>
+                    <Link to="/" className="text-success edit fs-5" onClick={logout}>Logout</Link>
+                </div>
             </div>
-            <div className="col-8 mx-auto mt-2">
-                <h3>Pokemon list:</h3>
-                <table className="table table-hover">
-                <thead>
+            <div className="col-8 mx-auto mt-2"style={{height:'auto'}}>
+                <h3 className='text-dark'>Pokemon list:</h3>
+                <table className="table table-hover text-dark border border-dark">
+                <thead className='text-dark fs-5'>
                     <tr>
                         <th>Name</th>
                         <th>Type</th>
@@ -49,9 +66,9 @@ const Home = () => {
                 {
                 pokemon.map((pokemon)=>(
                     <tr>
-                        <td className="text-dark fs-3"><Link to={`/viewPokemon/${pokemon._id}`} className="text-info">{pokemon.name}</Link></td>
-                        <td className="text-dark fs-3">{pokemon.type}</td>
-                        <td className="text-dark fs-3">{pokemon.generation}</td>
+                        <td className="text-dark fs-5"><Link to={`/viewPokemon/${pokemon._id}`} className="text-success">{pokemon.name}</Link></td>
+                        <td className="text-dark fs-5">{pokemon.type}</td>
+                        <td className="text-dark fs-5">{pokemon.generation}</td>
                         <td><button className='btn btn-danger mt-1' onClick={(e)=>deleteHandler(pokemon._id)}>Delete</button></td>
                     </tr>
                 ))
