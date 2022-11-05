@@ -74,7 +74,27 @@ const EditPokemon = () => {
                     <input type="text" className="form-control bg-light" value={name} onChange={(e)=>setName(e.target.value)} />
                     {errors.name ? <span className='text-danger'>{errors.name.message}</span> : null }<br></br>
                     <label className="form-label">Type:</label>
-                    <input type="text" className="form-control bg-light" value={type} onChange={(e)=>setType(e.target.value)} />
+                    <select className="form-control bg-light" value={type} onChange={(e)=>setType(e.target.value)}>
+                        <option>Select one:</option>
+                        <option value="Bug">Bug</option>
+                        <option value="Dark">Dark</option>
+                        <option value="Dragon">Dragon</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Fairy">Fairy</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="Fire">Fire</option>
+                        <option value="Flying">Flying</option>
+                        <option value="Grass">Grass</option> 
+                        <option value="Ghost">Ghost</option> 
+                        <option value="Ground">Ground</option> 
+                        <option value="Ice">Ice</option> 
+                        <option value="Normal">Normal</option>
+                        <option value="Poison">Poison</option> 
+                        <option value="Psychic">Psychic</option> 
+                        <option value="Water">Water</option> 
+                        <option value="Rock">Rock</option>
+                        <option value="Steel">Steel</option>
+                    </select>
                     {errors.type ? <span className='text-danger'>{errors.type.message}</span> : null }<br></br>
                     <label className="form-label">Generation:</label>
                     <select className="form-control bg-light" value={generation} onChange={(e)=>setGeneration(e.target.value)}>

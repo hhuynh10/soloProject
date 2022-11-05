@@ -7,6 +7,7 @@ import Home from './components/Home';
 import AddPokemon from './components/AddPokemon';
 import ViewPokemon from './components/ViewPokemon';
 import EditPokemon from './components/EditPokemon';
+import Room from './components/Room';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/liveChat" element={<Room />} />
           <Route path="/home" element={<Home />} />
           <Route path="/addPokemon" element={<AddPokemon />} />
           <Route path="/viewPokemon/:id" element={<ViewPokemon />} />

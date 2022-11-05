@@ -40,7 +40,7 @@ const ViewPokemon = () => {
                 </div>
             </div>
             <div style={{height:'700px'}}>
-                <table className='border border-dark border-2 fs-5 mx-auto mt-4 col-6 viewTable'>
+                <table className='border border-dark border-3 fs-5 mx-auto mt-4 col-6 viewTable'>
                     <img src={pokemon.image} className="col-5 mb-2 mt-4 bg-dark"/>
                     <p>Name: {pokemon.name}</p>
                     <p>Type: {pokemon.type}</p>

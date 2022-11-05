@@ -10,8 +10,10 @@ const PokemonSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        required: [true, "Type is required"],
-        minLength: [3, "Type must be at least 3 character long"]
+        enum: {
+            values: ['Bug', 'Dark', 'Dragon', 'Electric', 'Fairy', 'Fighting', 'Fire', 'Flying', 'Grass', 'Ghost', 'Ground', 'Ice', 'Normal', 'Poison', 'Psychic', 'Water', 'Rock', 'Steel'],
+            message: 'Please select a type'
+        }
     },
     generation: {
         type: String,

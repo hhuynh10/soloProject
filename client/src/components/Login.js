@@ -24,7 +24,7 @@ const Login = () => {
             // 
             console.log('error 1',err)
             console.log('error 2',err.response.data)
-            setErrors(err.response.data.errors)
+            setErrors(err.response.data.error)
         })
     }
 
@@ -35,18 +35,16 @@ const Login = () => {
                 <h1 className="text-light mt-2">Welcome Back Trainer!</h1>
                 <Link to="/" className="m-3 text-success fs-5">Back to register!</Link>
             </div>
-            <div style={{height:'600px'}}>
+            <div style={{height:'525px'}}>
                 <h2 className="login text-success">Login</h2>
                 <form onSubmit={submitHandler} className="col-3 text-light fs-5 mt-4 formLogin">
                     <label className="form-label">Email:</label>
                     <input type="email" className="form-control bg-light" value={email} onChange={(e)=>setEmail(e.target.value)} />
-                    {/* {errors.email ? <span className='text-danger'>{errors.email.message}</span> : null }<br></br> */}
-                    {errors && <span className='accent'>{errors}📸</span>} <br></br>
+                    <br></br>
                     <label className="form-label">Password:</label>
                     <input type="password" className="form-control bg-light" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                    {/* {errors.password ? <span className='text-danger'>{errors.password.message}</span> : null }<br></br> */}
-                    {errors && <span className='accent'>{errors}📸</span> } <br></br>
-                    <button type="submit" className="btn btn-success">Login</button>
+                    {errors ? <span className='text-danger'>{errors}</span> : null }<br></br>
+                    <button type="submit" className="btn btn-success m-2">Login</button>
                 </form>
             </div>
         </div>
