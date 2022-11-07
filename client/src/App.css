@@ -8,7 +8,7 @@
 }
 
 .edit {
-  color: white;
+  color: green;
   text-decoration: none
 }
 
@@ -32,19 +32,101 @@
   margin-top: 100px
 }
 
+.search {
+  width:300px
+}
+
+.bug, .bug:hover{
+  background-color: #A6B91A;
+}
+
+.dark, .dark:hover {
+  background-color: #705746;
+}
+
+.dragon, .dragon:hover {
+  background-color: #6F35FC;
+}
+
+.electric, .electric:hover {
+  background-color: #F7D02C;
+}
+
+.fairy, .fairy:hover {
+  background-color: #D685AD;
+}
+
+.fighting, .fighting:hover {
+  background-color: #C22E28;
+}
+
+.fire, .fire:hover {
+  background-color: #EE8130;
+}
+
+.flying, .flying:hover {
+  background-color: #A98FF3;
+}
+
+.grass, .grass:hover{
+  background-color: #7AC74C;
+}
+
+.ghost, .ghost:hover {
+  background-color: #735797;
+}
+
+.ground, .ground:hover {
+  background-color: #E2BF65;
+}
+
+.ice, .ice:hover {
+  background-color: #96D9D6;
+}
+
+.normal, .normal:hover {
+  background-color: #A8A77A;
+}
+
+.poison, .poison:hover {
+  background-color: #A33EA1;
+}
+
+.psychic, .psychic:hover {
+  background-color: #F95587;
+}
+
+.water, .water:hover {
+  background-color: #6390F0;
+}
+
+.rock, .rock:hover {
+  background-color: #B6A136;
+}
+
+.steel, .steel:hover {
+  background-color: #B7B7CE;
+}
+
 .chatBox {
   height: 550px;
   background-color: antiquewhite;
   margin-top: 50px;
   border: solid black 3px;
-  opacity: 0.9
+  opacity: 0.9;
+}
+
+.about{
+  background-color: antiquewhite;
+  opacity: 0.95;
+}
+
+.viewTable {
+  background-color: antiquewhite;
 }
 
 .messageContainer {
   height: 472px
-}
-.viewTable {
-  background-color: antiquewhite;
 }
 
 .message .message-content {
