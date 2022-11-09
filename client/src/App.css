@@ -121,6 +121,10 @@
   opacity: 0.95;
 }
 
+.rowStyle {
+  border-bottom-width: 0px
+}
+
 .viewTable {
   background-color: antiquewhite;
 }

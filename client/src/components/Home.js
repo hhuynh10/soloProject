@@ -15,7 +15,7 @@ const Home = () => {
     const [socket] = useState(() => io(':8000'));
 
     const sortPokemon = [...pokemon].sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.generation > b.generation ? 1 : -1
     );
 
     
@@ -106,13 +106,13 @@ const Home = () => {
                 <tbody>
                 {
                 sortPokemon.filter((pokemon)=>{
-                    if (searchTerm == ''){
+                    if (searchTerm === ''){
                         return pokemon
                     } else if (pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())){
                         return pokemon
                     }
                 }).map((pokemon)=>(
-                    <tr>
+                    <tr className='rowStyle'>
                         <td className="fs-5"><Link to={`/viewPokemon/${pokemon._id}`} className="text-dark">{pokemon.name}</Link></td>
                         <td><button className={`${pokemon.type === "Bug" && "btn text-light bug"}
                                                 ${pokemon.type === "Dark" && "btn text-light dark"}

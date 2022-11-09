@@ -27,14 +27,14 @@ const About = () => {
                     <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
                 </div>
             </div>
-            <div className="col-6 mx-auto mt-4 text-dark" style={{height:'625px'}}>
+            <div className="col-6 mx-auto mt-5 text-dark" style={{height:'625px'}}>
                 <table className='border border-dark border-3 about'>
                     <h2 className='mt-3'>All about Pokemon Library</h2>
                     <div className='mb-3 mx-3'>
                         <p>Pokem ipsum dolor sit amet Wigglytuff Garbodor Manaphy Yamask Houndour Professor Oak. Swift Voltorb Bagon Skuntank duis aute irure dolor in reprehenderit Pokemon 4Ever Pinsir. Ut enim ad minim veniam Plain Badge Seismitoad I wanna be the very best Spiritomb Krookodile Dragonite. Duis aute irure dolor in reprehenderit in voluptate Chimecho Flying Slowpoke Magikarp used Splash Bronzong Weedle. Ice Bonsly MysteryBerry Dugtrio Pidgeotto Shiftry Shieldon.</p>
                         <p>Ghost Treecko Luxray to extend our reach to the stars above Tornadus Crustle Venusaur. Sinnoh MysteryBerry surrender now or prepare to fight Fearow Milotic Wingull Registeel. Charmeleon Houndoom Tranquill Weezing Thundurus Junichi Masuda make it double. Mineral Badge Plusle Floatzel Chikorita Haxorus Ash's mother Houndour. Volcano Badge Gurdurr Leech Seed Tentacool Electabuzz Glameow Petilil.</p>
                         <p>Glitch City Poison Sting Swalot Chingling Poison Sting Silph Scope Whimsicott. Cerulean City Dodrio to extend our reach to the stars above Umbreon Rising Badge Wooper Honchkrow. Vermilion City Karrablast Anorith Pokemon Machoke Grass Ferroseed. Celadon City Flying Paras Klinklang Mankey Ash Ketchum Oddish. Mineral Badge Mirror Move Medicham Mienshao Parasect Wingull The Power Of One.</p>
-                        <p>Meowth, that's right Sigilyph Grovyle Milotic Shaymin Probopass Snubbull. Electric Banette Makuhita Grimer Woobat Mystery Gift anim id est laborum. Soul Badge Minun Aerodactyl Makuhita Articuno Watchog Poke Flute. V for victory Smeargle Simisear Butterfree Sandslash Lavender Town Cascade Badge. Thundershock Gallade Pallet Town Garbodor Bellsprout Venipede I wanna be the very best.</p>
+                        <p>Boulder Badge Volcarona to extend our reach to the stars above Nidoqueen Giratina Drifloon Seedot. Fighting Dusknoir Yanma Huntail Kanto Pallet Town gym. Brock Duosion Dratini Manectric Plusle Horsea Cacnea. Mirror Move Swablu Rhyperior Dusclops Cacturne Kadabra Feebas. We're blasting off again Cascoon Barboach Dustox Duskull Registeel Shelgon.</p>
                     </div>
                 </table>
             </div>
