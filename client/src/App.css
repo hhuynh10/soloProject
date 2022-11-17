@@ -16,6 +16,15 @@
   color: white
 }
 
+.edit-one {
+  color: white;
+  text-decoration: none
+}
+
+.edit-one:hover{
+  color: white
+}
+
 .register {
   text-align: left;
   margin-left: 255px
@@ -32,8 +41,29 @@
   margin-top: 100px
 }
 
+.user-img {
+  height: 40px;
+  width:40px;
+  border-radius: 50%;
+}
+
 .search {
-  width:300px
+  width:300px;
+  border: black solid 1px;
+  background-color: whitesmoke;
+}
+
+.home-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pokemon-img {
+  height: 200px;
+  width: 200px;
+  border-radius: 25px;
 }
 
 .bug, .bug:hover{

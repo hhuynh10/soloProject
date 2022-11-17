@@ -62,12 +62,15 @@ const EditPokemon = () => {
             <div className="col-12 no-gutter fluid pt-1 pb-1 bg-dark d-flex justify-content-between">
                 <div className='d-flex align-items-center'>
                     <h1 className="text-light ms-5">Pokemon Library</h1>
-                    <Link to="/home" className="text-success fs-5 ms-5 edit">Home</Link>
-                    <Link to="/about" className="text-success fs-5 ms-4 edit">About</Link>
-                    <Link to="/liveChat" className="text-success fs-5 ms-4 edit">Join our live chat! </Link>
-                </div>
+                        <Link to="/home" className="text-success fs-5 ms-5 edit">Home</Link>
+                        <Link to="/about" className="text-success fs-5 ms-4 edit">About</Link>
+                        <Link to="/liveChat" className="text-success fs-5 ms-4 edit">Live chat! </Link>
+                        <Link to="/users" className="text-success fs-5 ms-4 edit">Members </Link>
+                    </div>
                 <div className='me-5 d-flex align-items-center'>
-                    <Link to="/" className="text-success edit fs-5" onClick={logout}>Logout</Link>
+                    <Link to="/addPokemon" className="text-success fs-5 me-4 edit">Add your Pokemon here! </Link>
+                    <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
+                    <Link to='/'><img className='user-img bg-success' src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/></Link> 
                 </div>
             </div>
             <div style={{height:'700px'}}>

@@ -36,6 +36,15 @@ module.exports = {
         }
     },
 
+    getAllUsers: (req, res) => {
+        User.find()
+        .then((result)=> {
+            res.json(result)
+        }).catch((err)=> {
+            res.status(400).json(err)
+        })
+    },
+
     getLogged: async (req, res) => {
         try {
             const user = jwt.verify(req.cookies.userToken, SECRET);
@@ -45,6 +54,24 @@ module.exports = {
             res.status(400).json({ errors: 'failed to get logged in user' })
         }
     },
+
+    getOneUser:(req, res)=> {
+        User.findById(req.params.id)
+        .then((result)=> {
+            res.json(result)
+        }).catch((err)=> {
+            res.status(400).json(err)
+        })
+    },
+
+    updateUser:(req, res)=>{
+        User.updateOne({_id:req.params.id}, req.body, {runValidators:true, new:true})
+        .then((result)=> {
+            res.json(result)
+        }).catch((err)=> {
+            res.status(400).json(err)
+        })
+    }, 
 
     logOutUser: (req, res) => {
         res.clearCookie('userToken')
