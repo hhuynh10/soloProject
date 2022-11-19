@@ -1,8 +1,11 @@
 const Pokemon = require('../models/pokemon.model');
+const jwt = require("jsonwebtoken");
+const SECRET = process.env.SECRET_KEY
 
 module.exports = {
     getAllPokemons: (req, res) => {
         Pokemon.find()
+        .populate('creator', 'username')
         .then((result)=> {
             res.json(result)
         }).catch((err)=> {
@@ -12,6 +15,7 @@ module.exports = {
 
     getOnePokemon:(req, res)=> {
         Pokemon.findById(req.params.id)
+        .populate('creator', 'username')
         .then((result)=> {
             res.json(result)
         }).catch((err)=> {
@@ -20,10 +24,13 @@ module.exports = {
     },
 
     addPokemon:(req, res)=> {
-        Pokemon.create(req.body)
+        const user = jwt.verify(req.cookies.userToken, SECRET);
+        Pokemon.create({ ...req.body, creator: user })
         .then((result)=> {
+            console.log(result)
             res.json(result)
         }).catch((err)=> {
+            console.log('bad')
             res.status(400).json(err)
         })
     },

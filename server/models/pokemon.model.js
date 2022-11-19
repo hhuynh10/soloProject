@@ -30,7 +30,11 @@ const PokemonSchema = new mongoose.Schema({
     image: {
         type: String,
         required: [true, "Image is required!"],
-    }
+    },
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
 
 }, {timestamps:true});
 

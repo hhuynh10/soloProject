@@ -1,23 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
-import { format } from 'date-fns'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const AllUsers = () => {
+const Generation = () => {
 
-    const [user, setUser] = useState([])
+    const [pokemon, setPokemon] = useState([])
 
     const navigate = useNavigate()
 
-    const sortUser = [...user].sort((a, b) =>
-    a.createdAt > b.createdAt ? -1 : 1
-    );
+    const {num} = useParams()
 
     useEffect(()=>{
-        axios.get('http://localhost:8000/api/allUsers', {withCredentials:true})
+        axios.get('http://localhost:8000/api/allPokemons', {withCredentials:true})
         .then((res)=> {
             console.log(res)
-            setUser(res.data)
+            setPokemon(res.data)
         }).catch((err)=> {
             console.log(err)
         })
@@ -32,7 +29,6 @@ const AllUsers = () => {
             console.log(err)
         })
     }
-
     return (
         <div style={{backgroundColor: 'antiquewhite'}}>
             <div className="col-12 no-gutter fluid pt-1 pb-1 bg-dark d-flex justify-content-between">
@@ -48,31 +44,24 @@ const AllUsers = () => {
                         <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
                     </div>
                 </div>
-            <div className="col-8 mx-auto mt-2" style={{minBlockSize: '700px'}}>
-            <h2 className='text-dark'>Member List:</h2>
-                <table className="table table-hover border border-dark fs-5">
-                    <thead>
-                        <tr>
-                            <th>Member</th>
-                            <th>Member since</th>
-                            <th>View</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                    sortUser.map((user)=>(
-                        <tr>
-                            <td className="text-dark fs-5">{user.username}</td>
-                            <td className="text-dark fs-5">{user.createdAt}</td>
-                            <td><Link to={`/viewUser/${user._id}`} className="text-dark">View</Link></td>
-                        </tr>
-                    ))
-                }
-                    </tbody>
-                </table>
-            </div>
+                <h2 className='mt-3 mb-3'>Pokemon From Generation {num}</h2>
+                <div className="mx-auto mt-2"style={{minBlockSize: '800px'}}>
+                    <table className='mx-auto border border-dark border-4 col-9 pe-3 ps-3 pb-3 home-display'>
+                        {
+                            pokemon.filter( pokemon => pokemon.generation.includes(`Gen ${num}`))
+                            .map((pokemon)=>(
+                                <div className='mx-auto mt-3'>
+                                    <Link to={`/viewPokemon/${pokemon._id}`}><img src={pokemon.image} className="pokemon-img"/></Link>
+                                    <h5 className="fs-4"><Link to={`/viewPokemon/${pokemon._id}`} className="text-dark">{pokemon.name}</Link></h5>
+                                    <p><button className={`${pokemon.type == pokemon.type && `btn btn-sm text-light ${pokemon.type}`}`}><Link className="edit-one" to={`/${pokemon.type}`}>{pokemon.type}</Link></button></p>
+                                    <p>Added by {pokemon.creator?.username}</p>
+                                </div>
+                            ))
+                        }
+                    </table>
+                </div>
         </div>
     )
 }
 
-export default AllUsers
+export default Generation

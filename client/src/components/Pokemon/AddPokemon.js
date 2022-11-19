@@ -55,7 +55,6 @@ const AddPokemon = () => {
                     <div className='me-5 d-flex align-items-center'>
                         <Link to="/addPokemon" className="text-success fs-5 me-4 edit">Add your Pokemon here! </Link>
                         <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
-                        <Link to='/'><img className='user-img bg-success' src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/></Link> 
                     </div>
                 </div>
             <div style={{height:'700px'}}>
@@ -106,7 +105,7 @@ const AddPokemon = () => {
                     <label className="form-label">Image:</label>
                     <input type="text" className="form-control bg-light" value={image} onChange={(e)=>setImage(e.target.value)} />
                     {errors.image ? <span className='text-danger'>{errors.image.message}</span> : null }<br></br>
-                    <button type="submit" className="btn btn-success mt-3">Submit</button>
+                    <button type="submit" className="btn btn-success">Submit</button>
                 </form>
             </div>
         </div>

@@ -26,7 +26,6 @@ const About = () => {
                     <div className='me-5 d-flex align-items-center'>
                         <Link to="/addPokemon" className="text-success fs-5 me-4 edit">Add your Pokemon here! </Link>
                         <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
-                        <Link to='/'><img className='user-img bg-success' src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/></Link> 
                     </div>
                 </div>
             <div className="col-6 mx-auto mt-5 text-dark" style={{height:'625px'}}>

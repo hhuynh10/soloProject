@@ -2,25 +2,13 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const ViewUser = () => {
-
-    const [user, setUser] = useState([])
+const LoggedUser = () => {
 
     const [currentUser, setCurrentUser] = useState([])
 
     const {id} = useParams()
 
     const navigate = useNavigate()
-
-    useEffect(()=>{
-        axios.get(`http://localhost:8000/api/user/${id}`,{withCredentials:true})
-        .then((res)=> {
-            console.log(res)
-            setUser(res.data)
-        }).catch((err)=> {
-            console.log(err)
-        })
-    }, [])
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/currentUser/${id}`,{withCredentials:true})
@@ -53,7 +41,7 @@ const ViewUser = () => {
     }
 
     return (
-        <div style={{backgroundImage:`url(https://i.imgur.com/51AGRqe.png)`, backgroundSize: 'cover'}}>
+        <div style={{backgroundImage:`url(https://i.imgur.com/ytzcMBW.png)`, backgroundSize: 'cover'}}>
             <div className="col-12 no-gutter fluid pt-1 pb-1 bg-dark d-flex justify-content-between">
                 <div className='d-flex align-items-center'>
                     <h1 className="text-light ms-5">Pokemon Library</h1>
@@ -69,14 +57,15 @@ const ViewUser = () => {
             </div>
             <div style={{height:'600px'}}>
             <table className='border border-dark border-3 fs-5 mx-auto mt-5 col-6 viewTable'>
-                    <p className='mt-4'>Username: {user.username}</p>
-                    <p>Email: {user.email}</p>
-                    <p>Member since: {user.createdAt}</p>
-                    <p className='mb-4'>{(user.username == currentUser.username) ? <> <button className='btn btn-success'><Link className="edit-one" to={`/editUser/${user._id}`}>Edit</Link></button> <button className='btn btn-danger' onClick={(e)=>deleteHandler(user._id)} >Delete</button> </>: null} </p>
+                    <h3 className='mt-4'>Hi {currentUser.username}, this is your account:</h3>
+                    <p>Username: {currentUser.username}</p>
+                    <p>Email: {currentUser.email}</p>
+                    <p>Member since: {currentUser.createdAt}</p>
+                    <p className='mb-4'><button className='btn btn-success'><Link className="edit-one" to={`/editUser/${currentUser._id}`}>Edit</Link></button> <button className='btn btn-danger' onClick={(e)=>deleteHandler(currentUser._id)} >Delete</button></p>
                 </table>
             </div>
         </div>
     )
 }
 
-export default ViewUser
+export default LoggedUser

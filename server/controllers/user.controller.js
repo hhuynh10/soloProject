@@ -10,7 +10,7 @@ module.exports = {
         
             const userToken = jwt.sign({_id:newUser._id, email:newUser.email}, SECRET)
 
-            res.status(201).cookie('userToken', userToken, {httpOnly:true, expires: new Date(Date.now() + 1200000)}).json({successMessage:'User logged in', user:newUser})
+            res.status(201).cookie('userToken', userToken, {httpOnly:true}).json({successMessage:'User logged in', user:newUser})
         }catch(error){
             res.status(400).json(error)
         }
@@ -29,7 +29,7 @@ module.exports = {
                 res.status(400).json({error:"Invalid email/password"})
             }else{
                 const userToken = jwt.sign({_id:user._id, email:user.email}, SECRET)
-                res.status(201).cookie('userToken', userToken, {httpOnly:true, expires: new Date(Date.now() + 1200000)}).json({successMessage:'User logged in', user:user})
+                res.status(201).cookie('userToken', userToken, {httpOnly:true}).json({successMessage:'User logged in', user:user})
             }
         }catch(error){
             res.status(400).json({error:"Invalid email/password"})
@@ -48,7 +48,7 @@ module.exports = {
     getLogged: async (req, res) => {
         try {
             const user = jwt.verify(req.cookies.userToken, SECRET);
-            const currentUser = await Model.findOne({ _id: user._id });
+            const currentUser = await User.findOne({ _id: user._id });
             res.json(currentUser);
         } catch (error) {
             res.status(400).json({ errors: 'failed to get logged in user' })
@@ -73,8 +73,19 @@ module.exports = {
         })
     }, 
 
+    deleteUser:(req, res)=>{
+        User.deleteOne({_id:req.params.id})
+        .then((result)=> {
+            res.json(result)
+        }).catch((err)=> {
+            res.status(400).json(err)
+        })
+    },
+
     logOutUser: (req, res) => {
         res.clearCookie('userToken')
         res.json({success:'User logged out'})
     }
 }
+
+// expires: new Date(Date.now() + 1200000)

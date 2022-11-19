@@ -12,6 +12,9 @@ import About from './components/NavBar/About';
 import ViewUser from './components/User/ViewUser';
 import AllUsers from './components/User/AllUsers';
 import EditUser from './components/User/EditUser';
+import LoggedUser from './components/User/LoggedUser';
+import Generation from './components/Pokemon/Generation';
+import PokemonType from './components/Pokemon/PokemonType';
 
 function App() {
   return (
@@ -20,14 +23,19 @@ function App() {
         <Routes>
           <Route path="/" element={<Register />} />
           <Route path="/login" element={<Login />} />
+        </Routes>
+        <Routes>
           <Route path="/liveChat" element={<Room />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/addPokemon" element={<AddPokemon />} />
           <Route path="/viewPokemon/:id" element={<ViewPokemon />} />
+          <Route path="/gen/:num" element={<Generation />} />
+          <Route path="/:type" element={<PokemonType />} />
           <Route path="/editPokemon/:id" element={<EditPokemon />} />
           <Route path="/users" element={<AllUsers />} />
           <Route path="/viewUser/:id" element={<ViewUser />} />
+          <Route path="/loggedUser/:id" element={<LoggedUser />} />
           <Route path="/editUser/:id" element={<EditUser />} />
         </Routes>
       </BrowserRouter>

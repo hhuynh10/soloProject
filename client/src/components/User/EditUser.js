@@ -38,7 +38,7 @@ const EditUser = () => {
         }, {withCredentials:true})
             .then((res)=> {
             console.log(res)
-            navigate('/users')
+            navigate(`/loggedUser/${id}`)
         }).catch((err)=> {
             console.log(err)
             setErrors(err.response.data.errors)
@@ -68,7 +68,6 @@ const EditUser = () => {
                 <div className='me-5 d-flex align-items-center'>
                     <Link to="/addPokemon" className="text-success fs-5 me-4 edit">Add your Pokemon here! </Link>
                     <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
-                    <Link to='/'><img className='user-img bg-success' src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/></Link> 
                 </div>
             </div>
             <div className='mx-auto' style={{height:'650px'}}>

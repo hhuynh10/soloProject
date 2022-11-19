@@ -8,7 +8,7 @@
 }
 
 .edit {
-  color: green;
+  color: darkgreen;
   text-decoration: none
 }
 
@@ -50,7 +50,7 @@
 .search {
   width:300px;
   border: black solid 1px;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .home-display {
@@ -58,83 +58,96 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  background-color: rgba(236, 247, 233, 0.516);
 }
 
 .pokemon-img {
-  height: 200px;
-  width: 200px;
-  border-radius: 25px;
+  height: 225px;
+  width: 225px;
 }
 
-.bug, .bug:hover{
+.viewpokemon-img {
+  height: 300px;
+  width: 300px;
+}
+.btn-sm {
+  height: 35px;
+  width: 70px
+}
+
+.pokemon-name {
+  font-weight: bold;
+}
+
+.Bug, .Bug:hover{
   background-color: #A6B91A;
 }
 
-.dark, .dark:hover {
+.Dark, .Dark:hover {
   background-color: #705746;
 }
 
-.dragon, .dragon:hover {
+.Dragon, .Dragon:hover {
   background-color: #6F35FC;
 }
 
-.electric, .electric:hover {
+.Electric, .Electric:hover {
   background-color: #F7D02C;
 }
 
-.fairy, .fairy:hover {
+.Fairy, .Fairy:hover {
   background-color: #D685AD;
 }
 
-.fighting, .fighting:hover {
+.Fighting, .Fighting:hover {
   background-color: #C22E28;
 }
 
-.fire, .fire:hover {
+.Fire, .Fire:hover {
   background-color: #EE8130;
 }
 
-.flying, .flying:hover {
+.Flying, .Flying:hover {
   background-color: #A98FF3;
 }
 
-.grass, .grass:hover{
+.Grass, .Grass:hover{
   background-color: #7AC74C;
 }
 
-.ghost, .ghost:hover {
+.Ghost, .Ghost:hover {
   background-color: #735797;
 }
 
-.ground, .ground:hover {
+.Ground, .Ground:hover {
   background-color: #E2BF65;
 }
 
-.ice, .ice:hover {
+.Ice, .Ice:hover {
   background-color: #96D9D6;
 }
 
-.normal, .normal:hover {
+.Normal, .Normal:hover {
   background-color: #A8A77A;
 }
 
-.poison, .poison:hover {
+.Poison, .Poison:hover {
   background-color: #A33EA1;
 }
 
-.psychic, .psychic:hover {
+.Psychic, .Psychic:hover {
   background-color: #F95587;
 }
 
-.water, .water:hover {
+.Water, .Water:hover {
   background-color: #6390F0;
 }
 
-.rock, .rock:hover {
+.Rock, .Rock:hover {
   background-color: #B6A136;
 }
 
-.steel, .steel:hover {
+.Steel, .Steel:hover {
   background-color: #B7B7CE;
 }
 

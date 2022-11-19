@@ -1,19 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import {io} from 'socket.io-client'
 import Swal from 'sweetalert2'
 
 const ViewPokemon = () => {
+
+    const [currentUser, setCurrentUser] = useState([])
+    
+    const [feed, setFeed] = useState(0)
     
     const [pokemon, setPokemon] = useState([])
-
-    const [feed, setFeed] = useState(0)
 
     const {id} = useParams()
 
     const navigate = useNavigate()
 
-    let message = [
+    const [socket] = useState(() => io(':8000'));
+
+    const message = [
             "Thank you for feeding me!",
             "Yummmm!!!",
             "You're the best!",
@@ -26,7 +31,7 @@ const ViewPokemon = () => {
             "Love you to the fridge and back!"]
         
     
-    const feedPokemon = (e) => {
+    const feedPokemon = () => {
         if (feed < 5){
             setFeed(feed + 1)
             for (let i = 0; i < message.length+1; i++){
@@ -37,12 +42,12 @@ const ViewPokemon = () => {
                     padding: '2.5em',
                     background: 'antiquewhite url()',
                     backdrop: `
-                        rgba(74, 17, 13, 0.4)
-                        url(${pokemon.image})
-                        left bottom
-                        no-repeat
-                        `
-                    })
+                    rgba(74, 17, 13, 0.4)
+                    url(${pokemon.image})
+                    left bottom
+                    no-repeat
+                    `
+                })
             }
         } else {
             Swal.fire({
@@ -60,7 +65,53 @@ const ViewPokemon = () => {
         }).catch((err)=> {
             console.log(err)
         })
+
+        socket.on('pokemonDeleted', (payload)=>{
+            deletePokemon(payload)
+        })
+        
+        return () => {socket.disconnect(true)
+        console.log('unmounted')
+        }
     }, [])
+
+    useEffect(()=>{
+        axios.get(`http://localhost:8000/api/currentUser/${id}`,{withCredentials:true})
+        .then((res)=> {
+            console.log(res)
+            setCurrentUser(res.data)
+        }).catch((err)=> {
+            console.log(err)
+        })
+    }, [])
+
+    const deletePokemon =([id, name])=>{
+        // const filterPokemon = pokemon.filter((pokemon)=>(pokemon._id !== id))
+        // console.log(filterPokemon)
+        setPokemon(filterPokemon =>{
+            return filterPokemon.filter((pokemon)=>(pokemon._id !== id))
+        })
+        }
+
+        const deleteHandler = (id, name) =>{
+            console.log('deleting pokemon')
+            socket.emit('deletePokemon', [id, name])
+            Swal.fire({
+                title: 'Released!',
+                text: `${name} has been released from the Library!`,
+                icon: 'success',
+                background: 'antiquewhite'
+            })
+            navigate('/home')
+            // axios.delete(`http://localhost:8000/api/delete/${id}`, {withCredentials:true})
+            // .then((res)=> {
+            //     console.log(res)
+            //     const filterPokemon = pokemon.filter((pokemon)=>(pokemon._id !== id))
+            //     setPokemon(filterPokemon)
+            // }).catch((err)=> {
+            //     console.log(err)
+            // })
+        }
 
     const logout = (e)=>{
         axios.get('http://localhost:8000/api/logout',{withCredentials:true})
@@ -84,34 +135,22 @@ const ViewPokemon = () => {
                 <div className='me-5 d-flex align-items-center'>
                     <Link to="/addPokemon" className="text-success fs-5 me-4 edit">Add your Pokemon here! </Link>
                     <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
-                    <Link to='/'><img className='user-img bg-success' src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"/></Link> 
                 </div>
             </div>
-            <div style={{height:'750px'}}>
-                <table className='border border-dark border-3 fs-5 mx-auto mt-4 col-6 viewTable'>
-                    <img src={pokemon.image} className="col-5 mb-2 mt-4 bg-dark"/>
-                    <p>Name: {pokemon.name}</p>
-                    <p>Type: <button className={`${pokemon.type === "Bug" && "btn text-light bug"}
-                                                ${pokemon.type === "Dark" && "btn text-light dark"}
-                                                ${pokemon.type === "Dragon" && "btn text-light dragon"}
-                                                ${pokemon.type === "Electric" && "btn text-light electric"}
-                                                ${pokemon.type === "Fairy" && "btn text-light fairy"}
-                                                ${pokemon.type === "Fighting" && "btn text-light fighting"}
-                                                ${pokemon.type === "Fire" && "btn text-light fire"}
-                                                ${pokemon.type === "Flying" && "btn text-light flying"}
-                                                ${pokemon.type === "Grass" && "btn text-light grass"}
-                                                ${pokemon.type === "Ghost" && "btn text-light ghost"}
-                                                ${pokemon.type === "Ground" && "btn text-light ground"}
-                                                ${pokemon.type === "Ice" && "btn text-light ice"}
-                                                ${pokemon.type === "Normal" && "btn text-light normal"}
-                                                ${pokemon.type === "Poison" && "btn text-light poison"}
-                                                ${pokemon.type === "Psychic" && "btn text-light psychic"}
-                                                ${pokemon.type === "Water" && "btn text-light water"}
-                                                ${pokemon.type === "Rock" && "btn text-light rock"}
-                                                ${pokemon.type === "Steel" && "btn text-light steel"}
-                                                `}>{pokemon.type}</button></p>
-                    <p>{pokemon.generation}</p>
-                    <p className='mx-3'>{pokemon.description}</p>
+            <div style={{height:'650px'}}>
+                <table className='border border-dark border-3 fs-5 mx-auto mt-5 col-6 viewTable'>
+                    <div className='d-flex justify-content-between mb-4'>
+                        <div>
+                            <img src={pokemon.image} className="viewpokemon-img mt-4 ms-4 bg-dark"/>
+                        </div>
+                        <div className='mt-4 text-start ms-5'>
+                            <p>Name: <span className='pokemon-name'>{pokemon.name}</span></p>
+                            <p><button className={`${pokemon.type == pokemon.type && `btn btn-sm text-light ${pokemon.type}`}`}><Link className="edit-one" to={`/${pokemon.type}`}>{pokemon.type}</Link></button></p>
+                            <p><Link className='text-dark' to={`/gen/${pokemon.generation?.[pokemon.generation.length-1]}`}>{pokemon.generation}</Link></p>
+                            <p className='me-4'>{pokemon.description}</p>
+                            <p><p>{(pokemon.creator?.username == currentUser.username) ? <> <button className="btn btn-outline-success btn-sm mt-1"><Link className="edit" to={`/editPokemon/${pokemon._id}`}>Evolve</Link></button> <button className='btn btn-outline-danger btn-sm mt-1' onClick={(e)=>deleteHandler(pokemon._id, pokemon.name)}>Release</button> </>: null}</p></p>
+                        </div>
+                    </div>
                     <p>{pokemon.name} has been fed {feed} time(s)</p>
                     <button className='mb-4 btn btn-success' onClick={feedPokemon}>Feed {pokemon.name}</button>
                 </table>
