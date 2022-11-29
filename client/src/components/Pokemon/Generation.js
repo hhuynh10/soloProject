@@ -10,6 +10,10 @@ const Generation = () => {
 
     const {num} = useParams()
 
+    const sortPokemon = [...pokemon].sort((a, b) =>
+    a.name > b.name ? 1 : -1
+    );
+
     useEffect(()=>{
         axios.get('http://localhost:8000/api/allPokemons', {withCredentials:true})
         .then((res)=> {
@@ -48,13 +52,13 @@ const Generation = () => {
                 <div className="mx-auto mt-2"style={{minBlockSize: '800px'}}>
                     <table className='mx-auto border border-dark border-4 col-9 pe-3 ps-3 pb-3 home-display'>
                         {
-                            pokemon.filter( pokemon => pokemon.generation.includes(`Gen ${num}`))
+                            sortPokemon.filter( pokemon => pokemon.generation.includes(`Gen ${num}`))
                             .map((pokemon)=>(
                                 <div className='mx-auto mt-3'>
                                     <Link to={`/viewPokemon/${pokemon._id}`}><img src={pokemon.image} className="pokemon-img"/></Link>
                                     <h5 className="fs-4"><Link to={`/viewPokemon/${pokemon._id}`} className="text-dark">{pokemon.name}</Link></h5>
                                     <p><button className={`${pokemon.type == pokemon.type && `btn btn-sm text-light ${pokemon.type}`}`}><Link className="edit-one" to={`/${pokemon.type}`}>{pokemon.type}</Link></button></p>
-                                    <p>Added by {pokemon.creator?.username}</p>
+                                    <p><Link className='edit text-dark' to={`/pokemonCreator/${pokemon.creator?.username}`}>Added by {pokemon.creator?.username}</Link></p>
                                 </div>
                             ))
                         }

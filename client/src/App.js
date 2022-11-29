@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Register from './components/User/Register';
@@ -15,6 +14,7 @@ import EditUser from './components/User/EditUser';
 import LoggedUser from './components/User/LoggedUser';
 import Generation from './components/Pokemon/Generation';
 import PokemonType from './components/Pokemon/PokemonType';
+import Creator from './components/Pokemon/Creator';
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
           <Route path="/viewPokemon/:id" element={<ViewPokemon />} />
           <Route path="/gen/:num" element={<Generation />} />
           <Route path="/:type" element={<PokemonType />} />
+          <Route path="/pokemonCreator/:creator" element={<Creator />} />
           <Route path="/editPokemon/:id" element={<EditPokemon />} />
           <Route path="/users" element={<AllUsers />} />
           <Route path="/viewUser/:id" element={<ViewUser />} />

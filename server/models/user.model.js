@@ -22,7 +22,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
         minlength: [8, "Password must be 8 characters or longer"]
-    }
+    },
+    
 }, {timestamps: true});
 
 UserSchema.virtual('confirmPassword')

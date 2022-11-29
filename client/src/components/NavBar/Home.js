@@ -29,7 +29,6 @@ const Home = () => {
     }, [])
 
     useEffect(()=>{
-        console.log('use effect')
         axios.get('http://localhost:8000/api/allPokemons', {withCredentials:true})
         .then((res)=> {
             console.log(res)
@@ -81,7 +80,7 @@ const Home = () => {
                         <Link to={`/viewPokemon/${pokemon._id}`}><img src={pokemon.image} className="pokemon-img"/></Link>
                         <h5 className="fs-4"><Link to={`/viewPokemon/${pokemon._id}`} className="text-dark">{pokemon.name}</Link></h5>
                         <p><button className={`${pokemon.type == pokemon.type && `btn btn-sm text-light ${pokemon.type}`}`}><Link className="edit-one" to={`/${pokemon.type}`}>{pokemon.type}</Link></button></p>
-                        <p>Added by {pokemon.creator?.username}</p>
+                        <p><Link className='edit text-dark' to={`/pokemonCreator/${pokemon.creator?.username}`}>Added by {pokemon.creator?.username}</Link></p>
                     </div>
                 ))
             }

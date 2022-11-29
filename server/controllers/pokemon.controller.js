@@ -44,6 +44,20 @@ module.exports = {
         })
     }, 
 
+    obtainPokemon:(req, res)=>{
+        console.log('obtain controller')
+        const user = jwt.verify(req.cookies.userToken, SECRET);
+        console.log(user._id)
+        console.log(req.body.pokemon)
+        Pokemon.updateOne({_id:req.params.id}, { ...req.body, obtained: [...obtained, user._id] }, {runValidators:true, new:true})
+        // adding into the obtained array
+        .then((result)=> {
+            res.json(result)
+        }).catch((err)=> {
+            res.status(400).json(err)
+        })
+    }, 
+
     deletePokemon:(req, res)=>{
         Pokemon.deleteOne({_id:req.params.id})
         .then((result)=> {

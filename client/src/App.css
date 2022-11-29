@@ -25,6 +25,15 @@
   color: white
 }
 
+.edit-two {
+  color: rgb(76, 187, 215);
+  text-decoration: none
+}
+
+.edit-two:hover{
+  color: white
+}
+
 .register {
   text-align: left;
   margin-left: 255px
@@ -66,6 +75,11 @@
   width: 225px;
 }
 
+.pokemon-img-user{
+  height: 100px;
+  width: 100px;
+}
+
 .viewpokemon-img {
   height: 300px;
   width: 300px;
@@ -75,7 +89,17 @@
   width: 70px
 }
 
-.pokemon-name {
+.btn-sm-user {
+  height: 25px;
+  width: 60px;
+  font-size: 10px;
+}
+
+.scroll-user{
+  height:175px;
+}
+
+.name {
   font-weight: bold;
 }
 

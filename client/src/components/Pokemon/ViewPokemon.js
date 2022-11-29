@@ -113,6 +113,20 @@ const ViewPokemon = () => {
             // })
         }
 
+        const obtainButton = (e) => {
+            e.preventDefault()
+            axios.put(`http://localhost:8000/api/obtain/${id}`, {
+                pokemon
+            }, {withCredentials:true})
+            .then((res)=> {
+                console.log(res)
+                // navigate(`/viewPokemon/${id}`)
+            }).catch((err)=> {
+                console.log(err)
+                // setErrors(err.response.data.errors)
+            })
+        }
+
     const logout = (e)=>{
         axios.get('http://localhost:8000/api/logout',{withCredentials:true})
         .then((res)=> {
@@ -144,11 +158,17 @@ const ViewPokemon = () => {
                             <img src={pokemon.image} className="viewpokemon-img mt-4 ms-4 bg-dark"/>
                         </div>
                         <div className='mt-4 text-start ms-5'>
-                            <p>Name: <span className='pokemon-name'>{pokemon.name}</span></p>
+                            <p>Name: <span className='name'>{pokemon.name}</span></p>
                             <p><button className={`${pokemon.type == pokemon.type && `btn btn-sm text-light ${pokemon.type}`}`}><Link className="edit-one" to={`/${pokemon.type}`}>{pokemon.type}</Link></button></p>
                             <p><Link className='text-dark' to={`/gen/${pokemon.generation?.[pokemon.generation.length-1]}`}>{pokemon.generation}</Link></p>
                             <p className='me-4'>{pokemon.description}</p>
-                            <p><p>{(pokemon.creator?.username == currentUser.username) ? <> <button className="btn btn-outline-success btn-sm mt-1"><Link className="edit" to={`/editPokemon/${pokemon._id}`}>Evolve</Link></button> <button className='btn btn-outline-danger btn-sm mt-1' onClick={(e)=>deleteHandler(pokemon._id, pokemon.name)}>Release</button> </>: null}</p></p>
+                            <p>{(pokemon.creator?.username == currentUser.username) ? 
+                            <> <button className="btn btn-outline-success btn-sm mt-1"><Link className="edit" to={`/editPokemon/${pokemon._id}`}>Evolve</Link></button> <button className='btn btn-outline-danger btn-sm mt-1' onClick={(e)=>deleteHandler(pokemon._id, pokemon.name)}>Release</button>  
+                            </>: null}
+                            {(pokemon.creator?.username != currentUser.username) ? 
+                            <> <button className="btn btn-outline-info btn-sm mt-1" onClick={obtainButton}>Obtain</button>  
+                            </>: null}
+                            </p>
                         </div>
                     </div>
                     <p>{pokemon.name} has been fed {feed} time(s)</p>

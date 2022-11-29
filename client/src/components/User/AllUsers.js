@@ -13,6 +13,11 @@ const AllUsers = () => {
     a.createdAt > b.createdAt ? -1 : 1
     );
 
+    const getTime = (e) => {
+        let date = new Date(e).toLocaleDateString()
+        return date
+    }
+
     useEffect(()=>{
         axios.get('http://localhost:8000/api/allUsers', {withCredentials:true})
         .then((res)=> {
@@ -63,7 +68,7 @@ const AllUsers = () => {
                     sortUser.map((user)=>(
                         <tr>
                             <td className="text-dark fs-5">{user.username}</td>
-                            <td className="text-dark fs-5">{user.createdAt}</td>
+                            <td className="text-dark fs-5">{getTime(user.createdAt)}</td>
                             <td><Link to={`/viewUser/${user._id}`} className="text-dark">View</Link></td>
                         </tr>
                     ))

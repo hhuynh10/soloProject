@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const PokemonType = () => {
+const Creator = () => {
 
     const [pokemon, setPokemon] = useState([])
 
     const navigate = useNavigate()
 
-    const {type} = useParams()
+    const {creator} = useParams()
 
     const sortPokemon = [...pokemon].sort((a, b) =>
     a.name > b.name ? 1 : -1
@@ -33,7 +33,6 @@ const PokemonType = () => {
             console.log(err)
         })
     }
-
     return (
         <div style={{backgroundColor: 'antiquewhite'}}>
             <div className="col-12 no-gutter fluid pt-1 pb-1 bg-dark d-flex justify-content-between">
@@ -49,11 +48,11 @@ const PokemonType = () => {
                         <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
                     </div>
                 </div>
-                <h2 className='mt-3 mb-3'>Pokemon with <button className={`btn fs-4 text-light ${type}`} >{type}</button> Type</h2>
+                <h2 className='mt-3 mb-3'>Pokemon Added by {creator}</h2>
                 <div className="mx-auto mt-2"style={{minBlockSize: '800px'}}>
                     <table className='mx-auto border border-dark border-4 col-9 pe-3 ps-3 pb-3 home-display'>
                         {
-                            sortPokemon.filter( pokemon => pokemon.type.includes(type))
+                            sortPokemon.filter( pokemon => pokemon.creator?.username.includes(creator))
                             .map((pokemon)=>(
                                 <div className='mx-auto mt-3'>
                                     <Link to={`/viewPokemon/${pokemon._id}`}><img src={pokemon.image} className="pokemon-img"/></Link>
@@ -69,4 +68,4 @@ const PokemonType = () => {
     )
 }
 
-export default PokemonType
+export default Creator

@@ -35,7 +35,14 @@ const PokemonSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-
+    obtained: {
+        type: [],
+    },
+    // isKidFriendly: {
+    //     type: Boolean,
+    //     default: false,
+    // },  
+    
 }, {timestamps:true});
 
 const Pokemon = mongoose.model('Pokemon', PokemonSchema);
