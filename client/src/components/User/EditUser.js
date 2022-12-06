@@ -60,16 +60,16 @@ const EditUser = () => {
             <div className="col-12 no-gutter fluid pt-1 pb-1 bg-dark d-flex justify-content-between">
                 <div className='d-flex align-items-center'>
                     <h1 className="text-light ms-5">Pokemon Library</h1>
-                        <Link to="/home" className="text-success fs-5 ms-5 edit">Home</Link>
-                        <Link to="/about" className="text-success fs-5 ms-4 edit">About</Link>
-                        <Link to="/liveChat" className="text-success fs-5 ms-4 edit">Live chat! </Link>
-                        <Link to="/users" className="text-success fs-5 ms-4 edit">Members </Link>
+                        <Link to="/home" className="text-success fs-5 ms-5 edit animation">Home</Link>
+                        <Link to="/about" className="text-success fs-5 ms-4 edit animation">About</Link>
+                        <Link to="/liveChat" className="text-success fs-5 ms-4 edit animation">Live chat! </Link>
+                        <Link to="/users" className="text-success fs-5 ms-4 edit animation">Members </Link>
                     </div>
-                <div className='me-5 d-flex align-items-center'>
-                    <Link to="/addPokemon" className="text-success fs-5 me-4 edit">Add your Pokemon here! </Link>
-                    <Link to="/" className="text-success me-4 edit fs-5" onClick={logout}>Logout</Link>
+                    <div className='me-5 d-flex align-items-center'>
+                        <Link to="/addPokemon" className="text-success fs-5 me-4 edit animation">Add a Pokemon!</Link>
+                        <Link to="/" className="text-success me-4 edit fs-5 animation" onClick={logout}>Logout</Link>
+                    </div>
                 </div>
-            </div>
             <div className='mx-auto' style={{height:'650px'}}>
                 <h2 className="text-dark mt-3">Manage Account</h2>
                 <form onSubmit={submitHandler} className="col-6 fs-5 mt-4 mx-auto text-dark">
