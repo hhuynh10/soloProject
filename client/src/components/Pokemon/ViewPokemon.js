@@ -164,10 +164,10 @@ const ViewPokemon = () => {
                             <p className='me-4'>{pokemon.description}</p>
                             <p>{(pokemon.creator?.username == currentUser.username) ? 
                             <> <button className="btn btn-outline-success btn-sm mt-1"><Link className="edit" to={`/editPokemon/${pokemon._id}`}>Evolve</Link></button> <button className='btn btn-outline-danger btn-sm mt-1' onClick={(e)=>deleteHandler(pokemon._id, pokemon.name)}>Release</button>  
-                            </>: null}
+                            </> : null}
                             {(pokemon.creator?.username != currentUser.username) ? 
                             <> <button className="btn btn-outline-info btn-sm mt-1" onClick={obtainButton}>Obtain</button>  
-                            </>: null}
+                            </> : null}
                             </p>
                         </div>
                     </div>

@@ -14,9 +14,7 @@ const Home = () => {
 
     const navigate = useNavigate()
 
-    const sortPokemon = [...pokemon].sort((a, b) =>
-    a.name > b.name ? 1 : -1
-    );
+    const sortPokemon = [...pokemon].sort((a, b) => a.name > b.name ? 1 : -1);
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/currentUser/${id}`,{withCredentials:true})
@@ -91,24 +89,3 @@ const Home = () => {
 }
 
 export default Home
-
-
-
-                                                        // ${pokemon.type === "Bug" && "btn text-light bug"}
-                                                        // ${pokemon.type === "Dark" && "btn text-light dark"}
-                                                        // ${pokemon.type === "Dragon" && "btn text-light dragon"}
-                                                        // ${pokemon.type === "Electric" && "btn text-light electric"}
-                                                        // ${pokemon.type === "Fairy" && "btn text-light fairy"}
-                                                        // ${pokemon.type === "Fighting" && "btn text-light fighting"}
-                                                        // ${pokemon.type === "Fire" && "btn text-light fire"}
-                                                        // ${pokemon.type === "Flying" && "btn text-light flying"}
-                                                        // ${pokemon.type === "Grass" && "btn text-light grass"}
-                                                        // ${pokemon.type === "Ghost" && "btn text-light ghost"}
-                                                        // ${pokemon.type === "Ground" && "btn text-light ground"}
-                                                        // ${pokemon.type === "Ice" && "btn text-light ice"}
-                                                        // ${pokemon.type === "Normal" && "btn text-light normal"}
-                                                        // ${pokemon.type === "Poison" && "btn text-light poison"}
-                                                        // ${pokemon.type === "Psychic" && "btn text-light psychic"}
-                                                        // ${pokemon.type === "Water" && "btn text-light water"}
-                                                        // ${pokemon.type === "Rock" && "btn text-light rock"}
-                                                        // ${pokemon.type === "Steel" && "btn text-light steel"}

@@ -101,7 +101,6 @@ const LoggedUser = () => {
                         </div>
                     </ScrollToBottom>
                     <hr className='col-9 mx-auto'></hr>
-                    <h5>Pokemon You Have Obtained:</h5>
                 </table>
             </div>
         </div>
